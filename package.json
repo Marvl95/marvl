@@ -1,0 +1,26 @@
+{
+  "name": "npm-init",
+  "version": "1.0.0",
+  "description": "descritpion",
+  "keywords": [
+    "maty..."
+  ],
+  "homepage": "https://github.com/Marvl95/marvl#readme",
+  "bugs": {
+    "url": "https://github.com/Marvl95/marvl/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Marvl95/marvl.git"
+  },
+  "license": "ISC",
+  "author": "VladM",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "chalk": "^5.6.2"
+  }
+}
