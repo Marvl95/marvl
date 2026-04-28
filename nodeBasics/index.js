@@ -1,0 +1,12 @@
+import chalk from 'chalk';
+const now = new Date().toLocaleString();
+console.log(chalk.bold.cyan('\n=== QA JS Homework Demo ==='));
+console.log(chalk.gray(`Started at: ${now}`));
+console.log(chalk.green('✔ npm project initialized'));
+console.log(chalk.green('✔ chalk installed'));
+console.log(chalk.green('✔ index.js executed successfully'));
+console.log(chalk.yellow('\nTest summary:'));
+console.log(chalk.blue('  UI tests:    ') + chalk.bold.white('12 passed'));
+console.log(chalk.magenta('  API tests:   ') + chalk.bold.white('8 passed'));
+console.log(chalk.red('  Failed:      ') + chalk.bold.white('0'));
+console.log(chalk.bgGreen.black('\n  STATUS: READY TO COMMIT  \n'));
