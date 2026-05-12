@@ -1,7 +1,7 @@
 const book = {
   title: 'Clean Code',
   author: 'Robert C. Martin',
-  year: '2008',
+  price: 100
 };
 
 const { title, author } = book;
