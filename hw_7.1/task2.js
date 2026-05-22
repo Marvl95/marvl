@@ -8,4 +8,3 @@ function recursiveCounter(num) {
 }
 
 recursiveCounter(5);
-

@@ -1,5 +1,10 @@
 function divide(numerator, denominator) {
-  if (typeof numerator !== 'number' || typeof denominator !== 'number' || Number.isNaN(numerator) || Number.isNaN(denominator)) {
+  if (
+    typeof numerator !== 'number' ||
+    typeof denominator !== 'number' ||
+    Number.isNaN(numerator) ||
+    Number.isNaN(denominator)
+  ) {
     throw new Error('Both numerator and denominator must be valid numbers.');
   }
 

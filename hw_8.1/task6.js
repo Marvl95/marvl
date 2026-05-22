@@ -5,4 +5,3 @@ sortedNumbersList.sort((a, b) => a - b);
 
 console.log('Original array:', numbersList);
 console.log('Sorted array:', sortedNumbersList);
-

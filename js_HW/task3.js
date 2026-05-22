@@ -11,5 +11,3 @@ while (j <= 10) {
   console.log(`${number} x ${j} = ${number * j}`);
   j++;
 }
-
-
