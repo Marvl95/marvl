@@ -39,9 +39,7 @@ export class Book {
     const year = Number(value);
 
     if (!Number.isInteger(year) || year < 0 || year > new Date().getFullYear() + 1) {
-      throw new Error(
-        `Рік видання має бути цілим числом від 0 до ${new Date().getFullYear() + 1}`,
-      );
+      throw new Error(`Рік видання має бути цілим числом від 0 до ${new Date().getFullYear() + 1}`);
     }
 
     this.#year = year;
