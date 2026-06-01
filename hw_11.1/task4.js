@@ -1,10 +1,10 @@
 class TodoApi {
-  constructor(url = 'https://jsonplaceholder.typicode.com/todos/1') {
-    this.url = url;
+  constructor(baseUrl = 'https://jsonplaceholder.typicode.com/todos') {
+    this.baseUrl = baseUrl;
   }
 
-  async fetchTodo() {
-    const response = await fetch(this.url);
+  async fetchTodo(id = 1) {
+    const response = await fetch(`${this.baseUrl}/${id}`);
 
     if (!response.ok) {
       throw new Error(`Todo request failed: ${response.status}`);
@@ -15,12 +15,12 @@ class TodoApi {
 }
 
 class UserApi {
-  constructor(url = 'https://jsonplaceholder.typicode.com/users/1') {
-    this.url = url;
+  constructor(baseUrl = 'https://jsonplaceholder.typicode.com/users') {
+    this.baseUrl = baseUrl;
   }
 
-  async fetchUser() {
-    const response = await fetch(this.url);
+  async fetchUser(id = 1) {
+    const response = await fetch(`${this.baseUrl}/${id}`);
 
     if (!response.ok) {
       throw new Error(`User request failed: ${response.status}`);
