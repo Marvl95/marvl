@@ -51,56 +51,50 @@ function assertStatus(response, expectedStatus) {
   }
 }
 
-async function request1_getPostById() {
-  const response = await api.get('/posts/1');
+async function getPostById(postId) {
+  const response = await api.get(`/posts/${postId}`);
 
   assertStatus(response, 200);
 
   const { id, userId, title, body } = response.data;
-  if (id !== 1 || typeof userId !== 'number' || !title || !body) {
-    throw new Error('GET /posts/1: invalid post shape');
+  if (id !== postId || typeof userId !== 'number' || !title || !body) {
+    throw new Error(`GET /posts/${postId}: invalid post shape`);
   }
 
-  logSuccess('GET /posts/1 — post verified');
+  logSuccess(`GET /posts/${postId} — post verified`);
 }
 
-async function request2_getUserById() {
-  const response = await api.get('/users/1');
+async function getUserById(userId) {
+  const response = await api.get(`/users/${userId}`);
 
   assertStatus(response, 200);
 
   const { id, name, email, username } = response.data;
-  if (id !== 1 || !name || !email || !username) {
-    throw new Error('GET /users/1: invalid user shape');
+  if (id !== userId || !name || !email || !username) {
+    throw new Error(`GET /users/${userId}: invalid user shape`);
   }
 
-  logSuccess('GET /users/1 — user verified');
+  logSuccess(`GET /users/${userId} — user verified`);
 }
 
-async function request3_getCommentsForPost() {
-  const response = await api.get('/posts/1/comments');
+async function getCommentsForPost(postId) {
+  const response = await api.get(`/posts/${postId}/comments`);
 
   assertStatus(response, 200);
 
   if (!Array.isArray(response.data) || response.data.length === 0) {
-    throw new Error('GET /posts/1/comments: expected non-empty array');
+    throw new Error(`GET /posts/${postId}/comments: expected non-empty array`);
   }
 
   const first = response.data[0];
-  if (first.postId !== 1 || !first.email || !first.body) {
-    throw new Error('GET /posts/1/comments: invalid comment shape');
+  if (first.postId !== postId || !first.email || !first.body) {
+    throw new Error(`GET /posts/${postId}/comments: invalid comment shape`);
   }
 
-  logSuccess(`GET /posts/1/comments — ${response.data.length} comments verified`);
+  logSuccess(`GET /posts/${postId}/comments — ${response.data.length} comments verified`);
 }
 
-async function request4_postNewPost() {
-  const payload = {
-    title: 'HW 14.1 test post',
-    body: 'Created via axios POST',
-    userId: 1,
-  };
-
+async function createPost(payload) {
   const response = await api.post('/posts', payload);
 
   assertStatus(response, 201);
@@ -113,19 +107,18 @@ async function request4_postNewPost() {
   logSuccess('POST /posts — created post verified (id 101)');
 }
 
-async function request5_postNewTodo() {
-  const payload = {
-    title: 'Finish HW 14.1',
-    completed: false,
-    userId: 1,
-  };
-
+async function createTodo(payload) {
   const response = await api.post('/todos', payload);
 
   assertStatus(response, 201);
 
   const { id, title, completed, userId } = response.data;
-  if (id !== 201 || title !== payload.title || completed !== false || userId !== 1) {
+  if (
+    id !== 201 ||
+    title !== payload.title ||
+    completed !== payload.completed ||
+    userId !== payload.userId
+  ) {
     throw new Error('POST /todos: response data does not match sent payload');
   }
 
@@ -133,13 +126,24 @@ async function request5_postNewTodo() {
 }
 
 async function runApiScenario() {
+  const postId = 1;
+  const userId = 1;
+
   console.log(chalk.bold.cyan('\nJSONPlaceholder — 5 requests\n'));
 
-  await request1_getPostById();
-  await request2_getUserById();
-  await request3_getCommentsForPost();
-  await request4_postNewPost();
-  await request5_postNewTodo();
+  await getPostById(postId);
+  await getUserById(userId);
+  await getCommentsForPost(postId);
+  await createPost({
+    title: 'HW 14.1 test post',
+    body: 'Created via axios POST',
+    userId,
+  });
+  await createTodo({
+    title: 'Finish HW 14.1',
+    completed: false,
+    userId,
+  });
 
   console.log(chalk.bold.green('\nAll requests passed verification.\n'));
 }
