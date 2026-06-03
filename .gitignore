@@ -28,3 +28,6 @@ yarn-error.log*
 coverage/
 dist/
 build/
+
+# Homework local helpers (hints, not required in PR)
+hw_*/index.js
