@@ -1,5 +1,5 @@
-function fetchTodo() {
-  return fetch('https://jsonplaceholder.typicode.com/todos/1').then((response) => {
+function fetchTodo(id = 1) {
+  return fetch(`https://jsonplaceholder.typicode.com/todos/${id}`).then((response) => {
     if (!response.ok) {
       throw new Error(`Todo request failed: ${response.status}`);
     }
@@ -8,8 +8,8 @@ function fetchTodo() {
   });
 }
 
-function fetchUser() {
-  return fetch('https://jsonplaceholder.typicode.com/users/1').then((response) => {
+function fetchUser(id = 1) {
+  return fetch(`https://jsonplaceholder.typicode.com/users/${id}`).then((response) => {
     if (!response.ok) {
       throw new Error(`User request failed: ${response.status}`);
     }
