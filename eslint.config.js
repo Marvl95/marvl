@@ -35,6 +35,14 @@ export default [
     },
   },
   {
+    files: ['**/*.test.js'],
+    languageOptions: {
+      globals: {
+        ...globals.jest,
+      },
+    },
+  },
+  {
     files: ['jsBasics/**'],
     rules: {
       'no-unassigned-vars': 'off',
